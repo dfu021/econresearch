@@ -6,11 +6,11 @@ import networkx as nx
 import osmnx as ox 
 import shapely
 import json
-import rasterio as rio
+# import rasterio as rio
 import fiona
 import pickle
 import matplotlib.pyplot as plt
-import momepy
+# import momepy
 from networkx.algorithms import approximation as approx
 
 
@@ -77,20 +77,24 @@ def graphinfo(G):
     avgdegree = nx.k_nearest_neighbors(G)
 def nxanalysis (G):
     #all shortest simple path between two nodes
-    paths = {00 : []}
-    for node in G.nodes:
-        for node2 in G.nodes:
-            key1 = int(str(node) + str(node2))
-            #make key that is just two nodeids concatenated together
-            res = nx.all_shortest_paths(G,source = node, target = node2)
-            pathlist = [p for p in res]
-            paths[key1] = pathlist 
+    # paths = {00 : []}
+    # for node in G.nodes:
+    #     for node2 in G.nodes:
+    #         key1 = int(str(node) + str(node2))
+    #         #make key that is just two nodeids concatenated together
+    #         while True:
+    #             try:
+    #                 res = nx.all_shortest_paths(G,source = node, target = node2)
+    #                 pathlist = [p for p in res]
+    #                 break
+    #             except nx.exception.NetworkXNoPath:
+    #                 pathlist = []
+    #         paths[key1] = pathlist 
     #all shortest paths between pairs but not all shortest paths??
-    #path = dict(nx.all_pairs_shortest_path(G))
+    path = dict(nx.all_pairs_shortest_path(G))
 
 
 SFgraph = geojson_to_nx('SF2.geojson')
-# nxanalysis(SFgraph)
 graphinfo(SFgraph)
 nxanalysis(SFgraph)
 
